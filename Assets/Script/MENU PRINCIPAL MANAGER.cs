@@ -11,7 +11,7 @@ public class MENU_PRINCIPAL_MANAGER : MonoBehaviour
     {
         SceneManager.LoadScene(nomeDoLevelDeJogo);
     }
-    
+
     public void AbrirOpções()
     {
         painelMenuinicial.SetActive(false);
@@ -26,7 +26,6 @@ public class MENU_PRINCIPAL_MANAGER : MonoBehaviour
 
     public void SairJogo()
     {
-        Debug.Log("Sair do Jogo");
         Application.Quit();
     }
 }
