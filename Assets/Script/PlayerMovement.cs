@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
         if (morreu)
         {
             return;
@@ -42,9 +43,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (morreu)
         {
-            rb.linearVelocity = Vector3.zero;
             return;
-        }
+        }            
+        
 
         Vector3 forwardMove = Vector3.forward * forwardSpeed;
         Vector3 horizontalMove = Vector3.right * horizontalInput * horizontalSpeed;
@@ -57,20 +58,15 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (morreu)
-        {
-            return;
-        }
+        if (morreu) return;
+
+        Debug.Log($"Colidiu com: {collision.gameObject.name} | Tag: {collision.gameObject.tag}");
 
         if (IsObstacle(collision.gameObject))
         {
+            Debug.Log("MORREU — obstáculo detectado");
             Die();
             return;
-        }
-
-        if (IsGround(collision.gameObject))
-        {
-            canJump = true;
         }
     }
 

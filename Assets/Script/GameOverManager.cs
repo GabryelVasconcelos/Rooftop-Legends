@@ -23,6 +23,7 @@ public class GameOverManager : MonoBehaviour
     {
         if (playerMovement == null || painelVocePerdeu == null)
         {
+            Debug.LogWarning($"Referência nula! player={playerMovement}, painel={painelVocePerdeu}");
             return;
         }
 
@@ -30,6 +31,7 @@ public class GameOverManager : MonoBehaviour
         {
             painelVocePerdeu.SetActive(true);
             painelJaFoiMostrado = true;
+            Debug.Log($"Painel ativo: {painelVocePerdeu.activeInHierarchy}");
         }
     }
 
