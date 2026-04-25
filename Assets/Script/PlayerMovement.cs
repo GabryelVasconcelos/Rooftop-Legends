@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rightLimit = 5.5f;
     [SerializeField] private float leftLimit = -5.5f;
 
+    [SerializeField] private StaminaManager staminaManager; // Referência à estamina
+
     private Rigidbody rb;
     private float horizontalInput;
     private bool canJump;
@@ -24,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         if (morreu)
         {
             return;
@@ -32,7 +33,13 @@ public class PlayerMovement : MonoBehaviour
 
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        if (canJump && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        bool querPular = Input.GetKeyDown(KeyCode.Space)
+                      || Input.GetKeyDown(KeyCode.W)
+                      || Input.GetKeyDown(KeyCode.UpArrow);
+
+        bool temEstamina = staminaManager == null || staminaManager.TryConsumeStamina();
+
+        if (canJump && querPular && temEstamina)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canJump = false;
@@ -44,8 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (morreu)
         {
             return;
-        }            
-        
+        }
 
         Vector3 forwardMove = Vector3.forward * forwardSpeed;
         Vector3 horizontalMove = Vector3.right * horizontalInput * horizontalSpeed;
@@ -58,15 +64,20 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (morreu) return;
-
-        Debug.Log($"Colidiu com: {collision.gameObject.name} | Tag: {collision.gameObject.tag}");
+        if (morreu)
+        {
+            return;
+        }
 
         if (IsObstacle(collision.gameObject))
         {
-            Debug.Log("MORREU — obstáculo detectado");
             Die();
             return;
+        }
+
+        if (IsGround(collision.gameObject))
+        {
+            canJump = true;
         }
     }
 
