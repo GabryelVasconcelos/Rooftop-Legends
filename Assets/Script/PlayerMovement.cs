@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float forwardSpeed = 5f;
     [SerializeField] private float horizontalSpeed = 3f;
-    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float jumpForce = 50f;
     [SerializeField] private float rightLimit = 5.5f;
     [SerializeField] private float leftLimit = -5.5f;
 
