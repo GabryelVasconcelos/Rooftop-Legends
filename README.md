@@ -1,9 +1,3 @@
-```sh
-Utilize o site <https://www.toptal.com/developers/gitignore> para gerar seu arquivo gitignore e apague este campo.
-
-Vide tutoriais do PI.
-```
-
 # FECAP - Fundação de Comércio Álvares Penteado
 
 <p align="center">
@@ -14,7 +8,7 @@ Vide tutoriais do PI.
 
 ## Nome do Grupo
 
-## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Carlos Eduardo da Silva</a>, <a href="https://www.linkedin.com/in/victorbarq/">Lucas Pelliciotti</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme Harada</a>, <a href="https://www.linkedin.com/in/victorbarq/">Gabryel Alves</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme</a>
+## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Carlos Eduardo da Silva</a>, <a href="https://www.linkedin.com/in/victorbarq/">Lucas Pelliciotti</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme Harada</a>, <a href="https://www.linkedin.com/in/victorbarq/">Gabryel Vasconcelos</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme</a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/victorbarq/">Dr. Victor Von Doom</a>, <a href="https://www.linkedin.com/in/victorbarq/">Me. Saitama</a>, <a href="https://www.linkedin.com/in/victorbarq/">Dr. Strange</a>, <a href="https://www.linkedin.com/in/victorbarq/">Me. Yoda</a>, <a href="https://www.linkedin.com/in/victorbarq/">Dr. Gero</a>
 
