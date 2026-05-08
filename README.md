@@ -15,8 +15,7 @@
 <p align="center">
 <img width="2752" height="1536" alt="background" src="https://github.com/user-attachments/assets/21c029c1-214e-45e3-9b5f-7c74b9ce199a" />
 
-  Game by <a href="http://www.nyphotographic.com/">Nick Youngson</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
-</p>
+  
 
 
 Rooftop Legends é um runner por fases ambientado por cenários de
