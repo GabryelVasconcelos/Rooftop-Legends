@@ -8,7 +8,7 @@
 
 ## Nome do Grupo
 
-## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Carlos Eduardo da Silva</a>, <a href="https://www.linkedin.com/in/victorbarq/">Lucas Pelliciotti</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme Harada</a>, <a href="https://www.linkedin.com/in/victorbarq/">Gabryel Vasconcelos</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme</a>
+## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Carlos Eduardo da Silva</a>, <a href="https://www.linkedin.com/in/victorbarq/">Lucas Pelliciotti</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme Harada</a>, <a href="https://www.linkedin.com/in/victorbarq/">Gabryel Vasconcelos</a>, <a href="https://www.linkedin.com/in/victorbarq/">Guilherme Fernandes</a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/victorbarq/">Dr. Victor Von Doom</a>, <a href="https://www.linkedin.com/in/victorbarq/">Me. Saitama</a>, <a href="https://www.linkedin.com/in/victorbarq/">Dr. Strange</a>, <a href="https://www.linkedin.com/in/victorbarq/">Me. Yoda</a>, <a href="https://www.linkedin.com/in/victorbarq/">Dr. Gero</a>
 
