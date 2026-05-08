@@ -18,12 +18,16 @@
 </p>
 
 
-De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
+Rooftop Legends é um runner por fases ambientado por cenários de
+prédios, casas ou de ruas urbanas, onde o jogador poderá correr, pular e utilizar
+habilidades para superar obstáculos e completar níveis. Com foco em parkour e
+desafios progressivos, o jogo combina ação rápida com pequenos enigmas
+estratégicos ao longo das fases.
 <br><br>
-Meu projeto ajuda estudantes FECAP a configurarem seus githubs.
-<br><br>
-May the force be with you!
-<br><br>
+
+
+
+
 
 ## 🛠 Estrutura de pastas
 
