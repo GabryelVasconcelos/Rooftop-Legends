@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rightLimit = 5.5f;
     [SerializeField] private float leftLimit = -5.5f;
 
-    [SerializeField] private StaminaManager staminaManager; // Referencia a estamina
-
     private Rigidbody rb;
     private float horizontalInput;
     private bool canJump;
@@ -42,7 +40,17 @@ public class PlayerMovement : MonoBehaviour
         // O jogador so pode pular se tiver canJump e ja tiver passado 0.2s desde o ultimo pulo
         if (canJump && querPular && Time.time >= lastJumpTime + 0.2f)
         {
-            bool temEstamina = staminaManager == null || staminaManager.TryConsumeStamina();
+            // Usa o Singleton para consumir estamina
+            bool temEstamina = true;
+            if (StaminaManager.Instance != null)
+            {
+                temEstamina = StaminaManager.Instance.TryConsumeStamina();
+            }
+            else
+            {
+                Debug.LogWarning("StaminaManager.Instance nao encontrada! O pulo ocorrera sem custo de estamina.");
+            }
+
             if (temEstamina)
             {
                 // Zera a velocidade Y para um pulo consistente, caso esteja caindo de leve

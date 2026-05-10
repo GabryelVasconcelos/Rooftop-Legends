@@ -3,60 +3,60 @@ using UnityEngine.UI;
 
 public class StaminaManager : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement playerMovement;
+    // Singleton Instance
+    public static StaminaManager Instance { get; private set; }
+
     [SerializeField] private Slider staminaSlider;
 
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float staminaCostPerJump = 25f;
-    [SerializeField] private float regenPerSecond = 10f;
+    [SerializeField] private float regenPerSecond = 30f;
+    [SerializeField] private float regenDelay = 1.0f; // Tempo em segundos antes de voltar a regenerar
 
     private float currentStamina;
+    private float lastConsumeTime;
+    private bool warningLogShown = false;
+
+    void Awake()
+    {
+        // Singleton pattern implementation
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start()
     {
         currentStamina = maxStamina;
-
-        // Tenta achar o PlayerMovement se estiver vazio no Inspector
-        if (playerMovement == null)
-        {
-            playerMovement = FindObjectOfType<PlayerMovement>();
-            if (playerMovement == null)
-            {
-                Debug.LogWarning("StaminaManager: PlayerMovement nao foi atribuido e nao foi encontrado na cena!");
-            }
-        }
+        lastConsumeTime = -regenDelay; // Permite regenerar imediatamente no inicio se precisar
 
         // Tenta achar o Slider se estiver vazio no Inspector
         if (staminaSlider == null)
         {
             staminaSlider = FindObjectOfType<Slider>();
-            if (staminaSlider == null)
+            if (staminaSlider == null && !warningLogShown)
             {
-                Debug.LogWarning("StaminaManager: Slider de Estamina nao foi atribuido e nao foi encontrado na cena!");
+                Debug.LogWarning("StaminaManager: Nenhum Slider de Estamina foi encontrado na cena. A mecanica vai funcionar nos bastidores, mas sem barra visual.");
+                warningLogShown = true;
             }
         }
 
-        if (staminaSlider != null)
-        {
-            staminaSlider.maxValue = maxStamina;
-            staminaSlider.value = maxStamina;
-        }
+        UpdateUI();
     }
 
     void Update()
     {
-        // Se o player morreu, para de regenerar
-        if (playerMovement != null && playerMovement.morreu)
+        // Se ja passou o tempo de delay desde o ultimo uso, regenera
+        if (Time.time >= lastConsumeTime + regenDelay)
         {
-            return;
-        }
-
-        // Regenera com o tempo
-        currentStamina = Mathf.Min(currentStamina + regenPerSecond * Time.deltaTime, maxStamina);
-
-        if (staminaSlider != null)
-        {
-            staminaSlider.value = currentStamina;
+            if (currentStamina < maxStamina)
+            {
+                currentStamina = Mathf.Min(currentStamina + regenPerSecond * Time.deltaTime, maxStamina);
+                UpdateUI();
+            }
         }
     }
 
@@ -65,22 +65,22 @@ public class StaminaManager : MonoBehaviour
     {
         if (currentStamina < staminaCostPerJump)
         {
-            return false; // Sem estamina, nao pode pular
+            return false; // Sem estamina suficiente
         }
 
         currentStamina -= staminaCostPerJump;
+        lastConsumeTime = Time.time; // Reseta o timer de delay para recarregar
         
-        // Atualiza a barra imediatamente
-        if (staminaSlider != null)
-        {
-            staminaSlider.value = currentStamina;
-        }
-        
+        UpdateUI();
         return true;
     }
 
-    public bool HasStamina()
+    private void UpdateUI()
     {
-        return currentStamina >= staminaCostPerJump;
+        if (staminaSlider != null)
+        {
+            staminaSlider.maxValue = maxStamina;
+            staminaSlider.value = currentStamina;
+        }
     }
 }
