@@ -9,12 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rightLimit = 5.5f;
     [SerializeField] private float leftLimit = -5.5f;
 
-    [SerializeField] private StaminaManager staminaManager; // Referência à estamina
+    [SerializeField] private StaminaManager staminaManager; // Referencia a estamina
 
     private Rigidbody rb;
     private float horizontalInput;
     private bool canJump;
     public bool morreu;
+    private float lastJumpTime; // Cooldown para evitar pulos multiplos
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         canJump = true;
         morreu = false;
+        lastJumpTime = 0f;
     }
 
     void Update()
@@ -37,12 +39,19 @@ public class PlayerMovement : MonoBehaviour
                       || Input.GetKeyDown(KeyCode.W)
                       || Input.GetKeyDown(KeyCode.UpArrow);
 
-        bool temEstamina = staminaManager == null || staminaManager.TryConsumeStamina();
-
-        if (canJump && querPular && temEstamina)
+        // O jogador so pode pular se tiver canJump e ja tiver passado 0.2s desde o ultimo pulo
+        if (canJump && querPular && Time.time >= lastJumpTime + 0.2f)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            canJump = false;
+            bool temEstamina = staminaManager == null || staminaManager.TryConsumeStamina();
+            if (temEstamina)
+            {
+                // Zera a velocidade Y para um pulo consistente, caso esteja caindo de leve
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                
+                canJump = false;
+                lastJumpTime = Time.time;
+            }
         }
     }
 
@@ -75,24 +84,31 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (IsGround(collision.gameObject))
+        if (IsGround(collision.gameObject) && Time.time >= lastJumpTime + 0.2f)
         {
-            canJump = true;
+            CheckGroundContact(collision);
         }
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if (morreu || !IsGround(collision.gameObject))
+        if (morreu || !IsGround(collision.gameObject) || Time.time < lastJumpTime + 0.2f)
         {
             return;
         }
 
+        CheckGroundContact(collision);
+    }
+
+    void CheckGroundContact(Collision collision)
+    {
         foreach (ContactPoint contact in collision.contacts)
         {
-            if (Vector3.Angle(contact.normal, Vector3.up) < 30f)
+            // Verifica se a colisao e com algo que esta pelo menos parcialmente voltado para cima (o chao real)
+            if (Vector3.Angle(contact.normal, Vector3.up) < 45f)
             {
                 canJump = true;
+                return;
             }
         }
     }

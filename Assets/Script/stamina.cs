@@ -16,6 +16,26 @@ public class StaminaManager : MonoBehaviour
     {
         currentStamina = maxStamina;
 
+        // Tenta achar o PlayerMovement se estiver vazio no Inspector
+        if (playerMovement == null)
+        {
+            playerMovement = FindObjectOfType<PlayerMovement>();
+            if (playerMovement == null)
+            {
+                Debug.LogWarning("StaminaManager: PlayerMovement nao foi atribuido e nao foi encontrado na cena!");
+            }
+        }
+
+        // Tenta achar o Slider se estiver vazio no Inspector
+        if (staminaSlider == null)
+        {
+            staminaSlider = FindObjectOfType<Slider>();
+            if (staminaSlider == null)
+            {
+                Debug.LogWarning("StaminaManager: Slider de Estamina nao foi atribuido e nao foi encontrado na cena!");
+            }
+        }
+
         if (staminaSlider != null)
         {
             staminaSlider.maxValue = maxStamina;
@@ -25,7 +45,8 @@ public class StaminaManager : MonoBehaviour
 
     void Update()
     {
-        if (playerMovement == null || playerMovement.morreu)
+        // Se o player morreu, para de regenerar
+        if (playerMovement != null && playerMovement.morreu)
         {
             return;
         }
@@ -44,10 +65,17 @@ public class StaminaManager : MonoBehaviour
     {
         if (currentStamina < staminaCostPerJump)
         {
-            return false; // Sem estamina, não pode pular
+            return false; // Sem estamina, nao pode pular
         }
 
         currentStamina -= staminaCostPerJump;
+        
+        // Atualiza a barra imediatamente
+        if (staminaSlider != null)
+        {
+            staminaSlider.value = currentStamina;
+        }
+        
         return true;
     }
 
