@@ -4,22 +4,22 @@ public class Animação : MonoBehaviour
 {
     public Animator anim;
     Rigidbody rb;
-    bool noChao = true;
+    bool noChao;
 
     void Start()
     {
-       rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
-        if(Input.GetAxisRaw("Vertical") > 0)
+        if(Input.GetAxisRaw("Vertical") > 0 && noChao)
         {
-            rb.angularVelocity = new Vector3(rb.angularVelocity.x, 7, rb.angularVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 7, rb.linearVelocity.z);
             anim.SetBool("isJumping", true);
             noChao = false;
-        }
+        }   
     }
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         noChao = true;
         anim.SetBool("isJumping", false);
