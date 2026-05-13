@@ -1253,6 +1253,7 @@ GameObject:
   - component: {fileID: 721400274}
   - component: {fileID: 721400273}
   - component: {fileID: 721400272}
+  - component: {fileID: 721400275}
   m_Layer: 5
   m_Name: JOGAR
   m_TagString: Untagged
@@ -1324,7 +1325,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2006893665}
+      - m_Target: {fileID: 721400275}
         m_TargetAssemblyTypeName: MENU_PRINCIPAL_MANAGER, Assembly-CSharp
         m_MethodName: Jogar
         m_Mode: 1
@@ -1374,6 +1375,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721400270}
   m_CullTransparentMesh: 1
+--- !u!114 &721400275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721400270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322fee05be87f2247b51b6a214a6a4bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MENU_PRINCIPAL_MANAGER
+  nomeDoLevelDeJogo: JOGO1
+  painelMenuinicial: {fileID: 0}
+  "painelOp\xE7\xF5es": {fileID: 0}
 --- !u!1 &777483695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,9 +1548,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2006893665}
+      - m_Target: {fileID: 802928702}
         m_TargetAssemblyTypeName: MENU_PRINCIPAL_MANAGER, Assembly-CSharp
-        m_MethodName: SairJogo
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3049,9 +3065,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2006893665}
+      - m_Target: {fileID: 431114222}
         m_TargetAssemblyTypeName: MENU_PRINCIPAL_MANAGER, Assembly-CSharp
-        m_MethodName: "AbrirOp\xE7\xF5es"
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3128,7 +3144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322fee05be87f2247b51b6a214a6a4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MENU_PRINCIPAL_MANAGER
-  nomeDoLevelDeJogo: Jogo
+  nomeDoLevelDeJogo: JOGO1
   painelMenuinicial: {fileID: 2022957926}
   "painelOp\xE7\xF5es": {fileID: 431114222}
 --- !u!4 &2006893666
